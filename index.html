@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prosperity Grant Program</title>
+  <meta name="description" content="Apply for the Prosperity Grant—funding for innovators, creators, and community builders.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1218;
+      --card:#141922;
+      --accent:#58c6ff;
+      --accent-2:#62f3a7;
+      --text:#e8edf7;
+      --muted:#9aa6b2;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 500px at 10% 0%, #162033 0%, transparent 70%),
+        radial-gradient(1200px 500px at 90% 0%, #1a2439 0%, transparent 70%),
+        var(--bg);
+      line-height:1.6;
+    }
+
+    a{color:var(--accent);text-decoration:none}
+    a:hover{opacity:.9}
+
+    /* Layout */
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+    header{
+      position:sticky; top:0; backdrop-filter:saturate(120%) blur(8px);
+      background:rgba(15,18,24,.6); border-bottom:1px solid rgba(255,255,255,.06);
+      z-index:50;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:16px 0;
+    }
+    .logo{
+      display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.3px;
+    }
+    .logo-badge{
+      width:36px;height:36px;border-radius:50%;
+      background:conic-gradient(from 180deg at 50% 50%, var(--accent), var(--accent-2), var(--accent));
+      box-shadow:0 6px 16px rgba(88,198,255,.35);
+    }
+    .nav-links{display:flex; gap:18px; flex-wrap:wrap}
+    .nav-links a{color:var(--text); opacity:.8; font-weight:600}
+    .cta{
+      display:inline-flex; align-items:center; gap:10px;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#0a0d12; font-weight:700; padding:10px 16px; border-radius:12px;
+      box-shadow:var(--shadow); border:0;
+    }
+    .cta svg{width:18px;height:18px}
+
+    /* Hero */
+    .hero{
+      padding:80px 0 40px;
+    }
+    .hero-grid{
+      display:grid; grid-template-columns:1.2fr .8fr; gap:28px;
+    }
+    .headline{
+      font-family:"Playfair Display", serif;
+      font-weight:700; font-size:clamp(32px, 6vw, 58px); line-height:1.06;
+      letter-spacing:.2px;
+      background:linear-gradient(180deg, #fff, #cfe9ff 70%, #a8ffe0);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .sub{
+      color:var(--muted); font-size:clamp(16px, 2.5vw, 18px); margin-top:14px;
+    }
+    .hero-actions{display:flex; gap:14px; margin-top:22px; flex-wrap:wrap}
+    .btn{
+      background:#1f2633; border:1px solid rgba(255,255,255,.1); color:var(--text);
+      padding:12px 16px; border-radius:12px; font-weight:600;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow);
+    }
+    .hero-card{
+      padding:18px; display:grid; gap:14px;
+    }
+    .metric{
+      display:flex; align-items:center; gap:12px;
+      padding:14px; border-radius:14px; background:rgba(255,255,255,.04);
+    }
+    .chip{
+      padding:6px 10px; border-radius:999px; background:rgba(98,243,167,.15);
+      color:#b9ffd9; font-weight:700; font-size:12px; border:1px solid rgba(98,243,167,.5);
+    }
+
+    /* Sections */
+    section{padding:60px 0}
+    .section-title{
+      font-family:"Playfair Display", serif; font-size:32px; margin-bottom:12px;
+    }
+    .section-sub{color:var(--muted); margin-bottom:22px}
+
+    /* Cards grid */
+    .grid{
+      display:grid; gap:18px; grid-template-columns:repeat(3, 1fr);
+    }
+    .feature{
+      padding:18px; display:grid; gap:10px;
+    }
+    .feature h4{margin:0; font-size:18px}
+    .tag{font-size:12px; color:var(--muted)}
+
+    /* Timeline */
+    .timeline{display:grid; gap:16px}
+    .step{
+      display:grid; grid-template-columns: 56px 1fr; gap:14px; align-items:flex-start;
+      padding:14px; border-radius:16px; background:rgba(255,255,255,.04); border:1px dashed rgba(255,255,255,.1);
+    }
+    .step .num{
+      width:56px; height:56px; border-radius:12px; display:grid; place-items:center;
+      background:linear-gradient(135deg, rgba(88,198,255,.25), rgba(98,243,167,.25));
+      font-weight:800; color:#cfe9ff; border:1px solid rgba(255,255,255,.12);
+    }
+
+    /* FAQ */
+    .faq{display:grid; gap:12px}
+    details{
+      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; padding:12px 14px;
+    }
+    summary{cursor:pointer; font-weight:700}
+    details p{color:var(--muted)}
+
+    /* Footer */
+    footer{
+      padding:32px 0 60px; border-top:1px solid rgba(255,255,255,.06);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.05));
+    }
+    .socials{display:flex; gap:12px; flex-wrap:wrap}
+    .social-btn{
+      display:inline-flex; align-items:center; gap:10px; padding:10px 14px;
+      border-radius:12px; border:1px solid rgba(255,255,255,.1); color:var(--text);
+      background:#1b222f;
+    }
+    .credit{color:var(--muted); font-size:13px; margin-top:14px}
+
+    /* Animations */
+    .reveal{opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s ease}
+    .reveal.in{opacity:1; transform:none}
+    @keyframes floaty{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
+      100%{transform:translateY(0)}
+    }
+    .floaty{animation:floaty 6s ease-in-out infinite}
+    @keyframes shine{
+      0%{background-position:0% 50%}
+      100%{background-position:100% 50%}
+    }
+    .logo-badge{background-size:200% 200%; animation:shine 12s linear infinite}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2, 1fr)}
+    }
+    @media (max-width: 640px){
+      .nav{gap:10px}
+      .nav-links{display:none}
+      .grid{grid-template-columns:1fr}
+      .section-title{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="logo">
+        <div class="logo-badge"></div>
+        <div>Prosperity Grant</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#eligibility">Eligibility</a>
+        <a href="#apply">Apply</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="cta" href="#apply">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9A9.01 9.01 0 0 0 12 3Zm1 13h-2v-2H9v-2h2V8h2v4h2v2h-2Z"/></svg>
+        Apply now
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-grid">
+        <div>
+          <h1 class="headline reveal">Funding bold ideas that move communities forward.</h1>
+          <p class="sub reveal">The Prosperity Grant supports innovators, creators, and organizers solving real problems in their local communities. Apply in minutes—no jargon, just impact.</p>
+          <div class="hero-actions reveal">
+            <a class="cta" href="#apply">Start application</a>
+            <a class="btn" href="#eligibility">Check eligibility</a>
+          </div>
+          <div class="hero-card card reveal">
+            <div class="metric">
+              <span class="chip">Up to ₦5,000,000</span>
+              <div>
+                <strong>Grant amount</strong><br>
+                <span class="tag">Tiered awards based on project scope</span>
+              </div>
+            </div>
+            <div class="metric">
+              <span class="chip">4–6 weeks</span>
+              <div>
+                <strong>Decision timeline</strong><br>
+                <span class="tag">Transparent reviews, rolling notifications</span>
+              </div>
+            </div>
+            <div class="metric floaty">
+              <span class="chip">Nigeria-wide</span>
+              <div>
+                <strong>Eligibility</strong><br>
+                <span class="tag">Individuals, teams, and nonprofits</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <img alt="Grant showcase illustration" src="https://images.unsplash.com/photo-1556761175-129418cb2dfe?q=80&w=1600&auto=format&fit=crop" style="width:100%;height:auto;border-radius:14px;">
+          <div style="padding:14px;">
+            <p class="sub" style="margin:0">Build something that matters. Your story, your solution, your community.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <h2 class="section-title reveal">About the program</h2>
+        <p class="section-sub reveal">We back practical solutions—tools, services, and initiatives with measurable outcomes. We prioritize progress over polish, and impact over hype.</p>
+
+        <div class="grid">
+          <div class="feature card reveal">
+            <h4>Community impact</h4>
+            <p>Projects should address a clear need and demonstrate how outcomes will be tracked and reported.</p>
+          </div>
+          <div class="feature card reveal">
+            <h4>Open categories</h4>
+            <p>Health, education, climate, fintech, civic tech, creative industries, agriculture, and more.</p>
+          </div>
+          <div class="feature card reveal">
+            <h4>Flexible funding</h4>
+            <p>Milestone-based disbursements with support for tools, operations, pilots, and research.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="eligibility">
+      <div class="wrap">
+        <h2 class="section-title reveal">Eligibility checklist</h2>
+        <p class="section-sub reveal">A simple guide to quickly confirm fit before you apply.</p>
+
+        <div class="grid">
+          <div class="feature card reveal">
+            <h4>Alignment</h4>
+            <p>Clear problem, credible plan, and outcomes that directly benefit a defined community.</p>
+          </div>
+          <div class="feature card reveal">
+            <h4>Capacity</h4>
+            <p>Team or individual experience to deliver, with realistic timelines and budget.</p>
+          </div>
+          <div class="feature card reveal">
+            <h4>Compliance</h4>
+            <p>Ability to receive funds and report progress; ethical and legal standards upheld.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="apply">
+      <div class="wrap">
+        <h2 class="section-title reveal">Apply in minutes</h2>
+        <p class="section-sub reveal">Share your project, timeline, and budget. We’ll follow up with next steps.</p>
+
+        <div class="card reveal" style="padding:18px;">
+          <form class="grid" onsubmit="event.preventDefault(); alert('Thanks! Your application was submitted.');">
+            <div class="feature" style="grid-column: span 3;">
+              <label for="name"><strong>Name</strong></label>
+              <input id="name" name="name" type="text" required placeholder="Your full name" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0f141f;color:var(--text)">
+            </div>
+            <div class="feature">
+              <label for="email"><strong>Email</strong></label>
+              <input id="email" name="email" type="email" required placeholder="you@example.com" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0f141f;color:var(--text)">
+            </div>
+            <div class="feature">
+              <label for="phone"><strong>Phone</strong></label>
+              <input id="phone" name="phone" type="tel" required placeholder="+234 800 000 0000" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0f141f;color:var(--text)">
+            </div>
+            <div class="feature">
+              <label for="category"><strong>Category</strong></label>
+              <select id="category" name="category" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0f141f;color:var(--text)">
+                <option>Health</option>
+                <option>Education</option>
+                <option>Climate</option>
+                <option>Fintech</option>
+                <option>Civic tech</option>
+                <option>Creative</option>
+                <option>Agriculture</option>
+              </select>
+            </div>
+            <div class="feature" style="grid-column: span 3;">
+              <label for="summary"><strong>Project summary</strong></label>
+              <textarea id="summary" name="summary" rows="4" required placeholder="What problem are you solving and how?" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0f141f;color:var(--text)"></textarea>
+            </div>
+            <div class="feature" style="grid-column: span 3; display:flex; gap:12px; flex-wrap:wrap">
+              <button class="cta" type="submit">Submit application</button>
+              <a class="btn" href="#faq">Read FAQ</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <h2 class="section-title reveal">Frequently asked questions</h2>
+        <div class="faq">
+          <details class="reveal">
+            <summary>Who can apply?</summary>
+            <p>Individuals, teams, and registered organizations based in Nigeria or serving Nigerian communities.</p>
+          </details>
+          <details class="reveal">
+            <summary>How are grants disbursed?</summary>
+            <p>Funds are released by milestones with light reporting to keep momentum and accountability.</p>
+          </details>
+          <details class="reveal">
+            <summary>Can I re-apply if rejected?</summary>
+            <p>Yes. We share feedback where possible so you can refine and submit again in the next cycle.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <h2 class="section-title reveal">Contact</h2>
+        <p class="section-sub reveal">Questions or partnerships? Reach out—we read every message.</p>
+
+        <div class="card reveal" style="padding:18px; display:flex; gap:12px; flex-wrap:wrap">
+          <!-- Replace the href values with your actual handles -->
+          <a class="social-btn" href="https://t.me/YourTelegramUsername" target="_blank" rel="noopener">
+            <!-- Telegram icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.036 15.28L8.77 18.64c.487 0 .699-.21.952-.463l2.287-2.2 4.736 3.465c.868.476 1.49.227 1.726-.805l3.128-14.66.001-.001c.278-1.29-.466-1.792-1.312-1.472L2.46 9.41c-1.266.482-1.246 1.175-.216 1.494l4.89 1.525 11.343-7.158c.534-.325 1.021-.145.621.18"/></svg>
+            Telegram
+          </a>
+          <a class="social-btn" href="https://wa.me/2348000000000" target="_blank" rel="noopener">
+            <!-- WhatsApp icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 6.5A6.99 6.99 0 0 0 12 4a7 7 0 0 0-7 7c0 1.24.33 2.41.9 3.42L5 20l5.7-1A7 7 0 0 0 19 11c0-1.83-.71-3.54-1.5-4.5Zm-5.5 9.9c-2.71 0-4.9-2.2-4.9-4.9S9.29 6.6 12 6.6s4.9 2.2 4.9 4.9-2.19 4.9-4.9 4.9Zm2.07-3.35c-.1-.17-.36-.27-.76-.47s-.44-.26-.62.08c-.18.35-.72 1.18-.88 1.26-.16.08-.31.12-.57-.12s-.94-.35-1.8-1.12c-.67-.6-1.12-1.34-1.25-1.57-.13-.23 0-.35.1-.47.09-.09.2-.23.3-.34.1-.11.13-.19.2-.32.07-.13.03-.25-.02-.35s-.57-1.37-.78-1.87c-.2-.48-.41-.41-.57-.42h-.49c-.17 0-.44.06-.67.31-.23.25-.89.86-.89 2.09s.91 2.42 1.04 2.59c.13.17 1.79 2.73 4.32 3.71 1.62.62 2.25.7 3.06.59.49-.07 1.51-.61 1.72-1.22.21-.61.21-1.13.15-1.24Z"/></svg>
+            WhatsApp
+          </a>
+          <a class="social-btn" href="mailto:grants@example.org">
+            <!-- Mail icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+            Email
+          </a>
+        </div>
+
+        <p class="credit">Replace “YourTelegramUsername” and the WhatsApp number with your actual details. WhatsApp uses international format without plus or spaces (e.g., 2348012345678).</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="socials">
+        <a class="cta" href="#apply">Apply now</a>
+        <a class="btn" href="#about">Program details</a>
+      </div>
+      <p class="credit">© 2025 Prosperity Grant • Abuja, Nigeria</p>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          observer.unobserve(e.target);
+        }
+      });
+    },{threshold:0.18});
+
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(link=>{
+      link.addEventListener('click', e=>{
+        const id = link.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
